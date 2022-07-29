@@ -24,12 +24,21 @@ function NekosContainer(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!categories.includes(paramsNekoType)) {
-      navigate("/error", { replace: true });
-    } else if (paramsNekoType !== shownNekoType) {
-      dispatch(changeShownNekoTypeAC(paramsNekoType));
+    if (!props.searchFlag) {
+      if (!categories.includes(paramsNekoType)) {
+        navigate("/error", { replace: true });
+      } else if (paramsNekoType !== shownNekoType) {
+        dispatch(changeShownNekoTypeAC(paramsNekoType));
+      }
     }
-  }, [dispatch, paramsNekoType, shownNekoType, categories, navigate]);
+  }, [
+    dispatch,
+    paramsNekoType,
+    shownNekoType,
+    categories,
+    navigate,
+    props.searchFlag,
+  ]);
 
   function handleShowMoreClick(e) {
     dispatch(showMoreAC());
@@ -43,6 +52,7 @@ function NekosContainer(props) {
 
   return (
     <Nekos
+      searchFlag={props.searchFlag}
       initialLoadingStatus={initialLoadingStatus}
       showMoreLoadingStatus={showMoreLoadingStatus}
       shownNekoType={shownNekoType}

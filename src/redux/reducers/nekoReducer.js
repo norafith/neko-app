@@ -7,14 +7,17 @@ const CHANGE_INITIAL_LOADING_STATUS = "neko/CHANGE_INITIAL_LOADING_STATUS";
 const CHANGE_SHOWN_NEKO_TYPE = "neko/CHANGE_SHOWN_NEKO_TYPE";
 const SHOW_MORE = "neko/SHOW_MORE";
 const CHANGE_SHOW_MORE_LOADING_STATUS = "neko/CHANGE_SHOW_MORE_LOADING_STATUS";
+const SEARCH_NEKOS = "neko/SEARCH_NEKOS";
+const CHANGE_SEARCH_QUERY = "neko/CHANGE_SEARCH_QUERY";
 
-const categories = ["neko", "kitsune", "waifu", "husbando"];
+const categories = ["neko", "kitsune", "waifu", "husbando", "search"];
 
 const initialState = {
   categories: {},
   initialLoadingStatus: null,
   showMoreLoadingStatus: null,
   shownNekoType: null,
+  searchQuery: null,
 };
 
 categories.forEach((category) => {
@@ -55,6 +58,12 @@ function nekosReducer(state = initialState, action) {
       const stateCopy = { ...state };
 
       stateCopy.showMoreLoadingStatus = action.loadingStatus;
+      return stateCopy;
+    }
+    case CHANGE_SEARCH_QUERY: {
+      const stateCopy = { ...state };
+
+      stateCopy.searchQuery = action.searchQuery;
       return stateCopy;
     }
     default: {
@@ -99,6 +108,21 @@ function changeShowMoreLoadingStatusAC(loadingStatus) {
   };
 }
 
+function searchNekosAC(searchQuery, imageFormat) {
+  return {
+    type: SEARCH_NEKOS,
+    searchQuery,
+    imageFormat,
+  };
+}
+
+function changeSearchQueryAC(searchQuery) {
+  return {
+    type: CHANGE_SEARCH_QUERY,
+    searchQuery,
+  };
+}
+
 export default nekosReducer;
 export {
   GET_KITSUNE,
@@ -112,4 +136,7 @@ export {
   SHOW_MORE,
   showMoreAC,
   changeShowMoreLoadingStatusAC,
+  searchNekosAC,
+  SEARCH_NEKOS,
+  changeSearchQueryAC,
 };

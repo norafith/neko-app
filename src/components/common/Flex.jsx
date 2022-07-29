@@ -5,6 +5,7 @@ const Flex = styled.div`
   flex-direction: ${(props) => props.direction || "row"};
   align-items: ${(props) => props.align || "flex-start"};
   justify-content: ${(props) => props.justify || "flex-start"};
+  flex-wrap: ${(props) => props.wrap || "no-wrap"};
 `;
 
 export default Flex;

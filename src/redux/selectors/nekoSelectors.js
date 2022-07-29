@@ -18,10 +18,15 @@ function getCategoriesList(state) {
   return Object.keys(state.neko.categories);
 }
 
+function getSearchQuery(state) {
+  return state.neko.searchQuery;
+}
+
 export {
   getNekoInCategory,
   getInitialLoadingStatus,
   getShownNekoType,
   getCategoriesList,
   getShowMoreLoadingStatus,
+  getSearchQuery,
 };

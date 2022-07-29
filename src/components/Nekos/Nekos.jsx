@@ -28,8 +28,10 @@ function Nekos(props) {
         <section>
           {props.showMoreLoadingStatus ? <div>Loading...</div> : ""}
           <Button
+            unseen={props.searchFlag}
             onClick={props.handleShowMoreClick}
             disabled={props.showMoreLoadingStatus}
+            margin="10px 0"
           >
             Show more
           </Button>

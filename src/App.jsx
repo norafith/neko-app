@@ -5,6 +5,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import { Navigate } from "react-router";
 import styled, { createGlobalStyle } from "styled-components";
 import Home from "./components/Home/Home";
+import SearchContainer from "./components/Search/SearchContainer";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -34,17 +35,30 @@ const AppWrapper = styled.main`
   margin-top: 50px;
 `;
 
+const Main = styled.main`
+  padding: 10px;
+`;
+
 function App(props) {
   return (
     <AppWrapper>
       <GlobalStyle />
       <HeaderContainer />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/view/:nekoType" element={<NekosContainer />} />
-        <Route path="/error" element={<ErrorPage />} />
-        <Route path="/*" element={<Navigate replace to="/error" />} />
-      </Routes>
+      <Main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/view/:nekoType" element={<NekosContainer />} />
+          <Route path="/error" element={<ErrorPage />} />
+          <Route
+            path="/search/:searchQuery/:imageFormat"
+            element={<SearchContainer />}
+          />
+          <Route path="/search/:searchQuery" element={<SearchContainer />} />
+          <Route path="/search" element={<SearchContainer />} />
+
+          <Route path="/*" element={<Navigate replace to="/error" />} />
+        </Routes>
+      </Main>
     </AppWrapper>
   );
 }
